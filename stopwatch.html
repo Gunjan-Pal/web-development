@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stopwatch Using JavaScript</title>
+    <link rel="stylesheet" href="C:\Users\gunja\OneDrive\Desktop\WebPage\.vscode\project 2\style.css">
+</head>
+<body>
+    <div class="stopwatch">
+        <h1 id="displayTime">00:00:00</h1>
+        <div class="buttons">
+            <img src="c:\img\WhatsApp Image 2024-05-28 at 17.21.33_44b82455.jpg" onclick="watchStop()">
+            <img src="c:\img\WhatsApp Image 2024-05-28 at 17.21.34_b0c824ad.jpg" onclick="watchStart()">
+            <img src="c:\img\WhatsApp Image 2024-05-28 at 17.21.34_b0263c93.jpg" onclick="watchReset()">
+            </div>
+    </div>
+    <script>
+        let [seconds, minutes, hours] =[0,0,0];
+        let displayTime = document.getElementById("displayTime");
+       let timer = null;
+        function stopwatch(){
+            seconds++;
+            if(seconds==60){
+                seconds=0;
+                minutes++;
+                if(minutes==60){
+                    minutes=0;
+                    hours++;
+                }
+            }
+            let h = hours < 10 ? "0" + hours : hours;
+            let m = minutes < 10 ? "0" + minutes : minutes;
+            let s = seconds < 10 ? "0" + seconds : seconds;
+            displayTime.innerHTML = h + ":" + m + ":" + s;
+        }
+        function watchStart(){
+        if(timer!==null){
+            clearInterval(timer);
+        }
+            timer =  setInterval(stopwatch,1000);
+        }
+        function watchStop(){
+            clearInterval(timer);  
+        }
+        function watchReset(){
+            clearInterval(timer);  
+            [seconds, minutes, hours] =[0,0,0];
+        displayTime.innerHTML = "00:00:00";
+        }
+    </script>
+</body>
+</html>
